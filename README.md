@@ -4,12 +4,12 @@
 ## 개발 기간
 > 2019.01.21 - 2019.02.22
 
-### Refactoring About CoreData 
+### Refactoring
 
 - 개인적으로 짧은 시간동안 하지 못했던 부분들에 대해서 아쉬움이 남아 추가 개발을 진행하게 되었습니다.
 - 다음과 같은 부분들을 진행하였습니다.
     - 코어데이터 리팩토링
-    - 사용성 증진
+    - 사용성 증진 ( With HUDView )
 
 > 2019.03 ~ 2019.04
 >
@@ -92,7 +92,8 @@
 
 ![](./image/scrap2.png)
 
-> 추가된 부분
+> 추가된 부분 - Scrap HUDView
 
 ![](./image/scrap.gif)
 ![](./image/scrap2.gif)
+![](./image/hudviewProtocol.png)

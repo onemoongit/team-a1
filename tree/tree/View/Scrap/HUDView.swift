@@ -35,12 +35,6 @@ class HUDView: UIView {
         
     }
     
-    private func removeXib(after: Double) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + after) {
-            self.removeFromSuperview()
-        }
-    }
-    
     func show(animted: Bool) {
         if animted {
             alpha = 0
@@ -51,6 +45,12 @@ class HUDView: UIView {
             }) { (_) in
                 self.removeXib(after: 0.6)
             }
+        }
+    }
+    
+    private func removeXib(after: Double) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + after) {
+            self.removeFromSuperview()
         }
     }
 
