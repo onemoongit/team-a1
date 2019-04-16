@@ -4,12 +4,13 @@
 ## 개발 기간
 > 2019.01.21 - 2019.02.22
 
-### Refactoring
+### + Refactoring
 
 - 개인적으로 짧은 시간동안 하지 못했던 부분들에 대해서 아쉬움이 남아 추가 개발을 진행하게 되었습니다.
 - 다음과 같은 부분들을 진행하였습니다.
     - 코어데이터 리팩토링
     - 사용성 증진 ( With HUDView )
+- 간단한 설명과 함께 [하단](#Refactoring)에서 확인할 수 있습니다.
 
 > 2019.03 ~ 2019.04
 >
@@ -92,7 +93,37 @@
 
 ![](./image/scrap2.png)
 
-> 추가된 부분 - Scrap HUDView
+## Refactoring 
+
+#### CoreData Architecture
+
+#### why? 
+
+- 확장을 생각해봤을 때
+  - 기존의 구조는 하나의 엔티티에 필요한 모든 속성을 추가하였다.
+  - 현재 까지는 관리가 그다지 까다롭지 않았으나관리적인 측면에서 모든 속성을 하나의 엔티티에 관리하기에는 많은 체크가 필요하다고 생각 결국 사용성이 떨어진다.
+    - 예를 들어서 search를 통한 데이터에 `search keyword` 라는 속성이 추가될 때 거대한 엔티티에 추가 하는 것이 아닌 Search 라는 관계를 통해서 만들어진 엔티티에만 속성을 추가하면 된다.
+  - 따라서 이를 기본적으로 저장하는 `ArticleBase`라는 엔티티를 만들고 관계를 추가하는 방식으로 변경하였다. 
+- NSFetchedResultsController 
+  - 다른 탭에서 추가 및 삭제를 했을 때 scrapViewController에서 변경 시점을 확인해 필요한 동작을 할 수 있도록 하였다.
+    - 예를 들어서 다른 탭에서 스크랩을 한 경우 resultController에서 이를 확인한 뒤 탭 badge의 수를 확인할 수 있다.
+
+
+<img src="./image/coredata_Architecture_1.png" style="width: 49%;">
+<img src="./image/coredata_Architecture_2.png" style="width: 49%;">
+
+
+<hr>
+
+#### Scrap HUDView
+
+#### why? 
+
+- 사용자가 스크랩을 했는지 안했는지 확인할 수 없었다.
+  - 물론 scarp tab에 간 경우에 확인할 수 있다.
+  - 하지만 바로바로 확인을 하는 것이 맞다고 판단하였다. 따라서 HUDView를 만들기로 함
+    - HUD (Head Up Display)
+  - Protocol 초기 구현을 통해서 scrap 을 하는 클래스에만 프로토콜을 채택하고 `hud(inView:text:)` 를 통해서 쉽게 사용할 수 있도록 하였다. 
 
 ![](./image/scrap.gif)
 ![](./image/scrap2.gif)
